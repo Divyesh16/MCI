@@ -1,15 +1,18 @@
 apiVersion: networking.gke.io/v1
 kind: MultiClusterService
 metadata:
-  name: whereami-mcs
-  namespace: whereami
+  name: global-mcs
+  namespace: global
 spec:
   template:
     spec:
       selector:
-        app: whereami
+        app: global
       ports:
       - name: web
         protocol: TCP
         port: 8080
         targetPort: 8080
+  clusters:
+  - link: "asia-east1-a/gke-asia"
+  - link: "europe-west1-b/gke-eu"

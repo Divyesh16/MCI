@@ -135,7 +135,7 @@ kubectl config use-context gke-us
 # Deploy the MultiClusterService
 kubectl apply -f mcs.yaml
 
-#This MultiClusterService creates a derived headless Service in every cluster that matches Pods with app: whereami in whereami namespace
+#This MultiClusterService creates a derived headless Service in every cluster that matches Pods with app: global in global namespace
 
 ```
 </br>
@@ -159,7 +159,7 @@ kubectl apply -f mci.yaml
 kubectl config use-context gke-us
 
 # Verify that deployment has succeeded:
-kubectl describe mci whereami-ingress -n whereami
+kubectl describe mci global-ingress -n global
 
 #Validate that the application is serving on the VIP with the /ping endpoint:
 curl INGRESS_VIP/ping

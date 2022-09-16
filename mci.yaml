@@ -1,11 +1,11 @@
 apiVersion: networking.gke.io/v1
 kind: MultiClusterIngress
 metadata:
-  name: whereami-ingress
-  namespace: whereami
+  name: global-ingress
+  namespace: global
 spec:
   template:
     spec:
       backend:
-        serviceName: whereami-mcs
+        serviceName: global-mcs
         servicePort: 8080

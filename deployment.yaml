@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: whereami-deployment
-  namespace: whereami
+  name: global-deployment
+  namespace: global
   labels:
-    app: whereami
+    app: global
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: whereami
+      app: global
   template:
     metadata:
       labels:
-        app: whereami
+        app: global
     spec:
       containers:
       - name: frontend
