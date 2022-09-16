@@ -11,7 +11,7 @@ We are using standalone MultiClusterIngress Pricing, so will make sure Anthos AP
 
 ```bash
 # Confirm Anthos API is disabled 
-gcloud services list --project=PROJECT_ID | grep anthos.googleapis.com
+gcloud services list --project=${PROJECT_ID} | grep anthos.googleapis.com
 
 # Enable required APIs
 gcloud services enable \
@@ -19,7 +19,7 @@ gcloud services enable \
     gkehub.googleapis.com \
     container.googleapis.com \
     multiclusterservicediscovery.googleapis.com \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 ```
 </br>
 
@@ -31,17 +31,17 @@ Create two GKE clusters named gke-us and gke-eu in the europe-west1 and us-centr
 gcloud container clusters create gke-us \
     --zone=us-central1-b \
     --enable-ip-alias \
-    --workload-pool=PROJECT_ID.svc.id.goog \
+    --workload-pool=${PROJECT_ID}.svc.id.goog \
     --release-channel=stable \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 
 # Create the gke-eu cluster in the europe-west1-b zone:
 gcloud container clusters create gke-eu \
     --zone=europe-west1-b \
     --enable-ip-alias \
-    --workload-pool=PROJECT_ID.svc.id.goog \
+    --workload-pool=${PROJECT_ID}.svc.id.goog \
     --release-channel=stable \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 ```
 </br>
 
@@ -50,19 +50,19 @@ gcloud container clusters create gke-eu \
 ```bash
 gcloud container clusters get-credentials gke-us \
     --zone=us-central1-b \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 
 gcloud container clusters get-credentials gke-eu \
     --zone=europe-west1-b \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 ```
 </br>
 
 ##### Rename Cluster Contexts
 
 ```bash
-kubectl config rename-context gke_PROJECT_ID_us-central1-b_gke-us gke-us
-kubectl config rename-context gke_PROJECT_ID_europe-west1-b_gke-eu gke-eu
+kubectl config rename-context gke_${PROJECT_ID}_us-central1-b_gke-us gke-us
+kubectl config rename-context gke_${PROJECT_ID}_europe-west1-b_gke-eu gke-eu
 ```
 </br>
 
@@ -73,15 +73,15 @@ kubectl config rename-context gke_PROJECT_ID_europe-west1-b_gke-eu gke-eu
 gcloud container fleet memberships register gke-us \
     --gke-cluster us-central1-b/gke-us \
     --enable-workload-identity \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 
 gcloud container fleet memberships register gke-eu \
     --gke-cluster europe-west1-b/gke-eu \
     --enable-workload-identity \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
     
 # Confirm clusters are part of fleet
-gcloud container fleet memberships list --project=PROJECT_ID
+gcloud container fleet memberships list --project=${PROJECT_ID}
 ```
 </br>
 
@@ -91,7 +91,7 @@ gcloud container fleet memberships list --project=PROJECT_ID
 # Enable Multi Cluster Ingress and select gke-us as the config cluster:
 gcloud container fleet ingress enable \
     --config-membership=gke-us \
-    --project=PROJECT_ID
+    --project=${PROJECT_ID}
 #The config cluster takes up to 15 minutes to register. 
 ```
 </br>
