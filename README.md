@@ -1,6 +1,10 @@
 # MCI
 
 ### Setup up Multi Cluster Ingress
+Before moving foreward, let's set PROJECT_ID variable 
+```bash
+export PROJECT_ID=<<your_Project_ID>>
+```
 
 ##### Enable APIs
 We are using standalone MultiClusterIngress Pricing, so will make sure Anthos APIs is disbaled, if you are using other Anthos features then no need to disable anthos API.
