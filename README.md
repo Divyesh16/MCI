@@ -75,7 +75,7 @@ gcloud container clusters get-credentials gke-asia \
 ```bash
 kubectl config rename-context gke_${PROJECT_ID}_us-central1-b_gke-us gke-us
 kubectl config rename-context gke_${PROJECT_ID}_europe-west1-b_gke-eu gke-eu
-kubectl config rename-context gke_${PROJECT_ID}_asia-east1-a_gke-eu gke-asia
+kubectl config rename-context gke_${PROJECT_ID}_asia-east1-a_gke-asia gke-asia
 ```
 </br>
 
